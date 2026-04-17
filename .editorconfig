@@ -9,6 +9,9 @@ insert_final_newline = true
 max_line_length = 120
 tab_width = 4
 
+[.idea/*]
+insert_final_newline = false
+
 [*.yaml]
 indent_size = 2
 
