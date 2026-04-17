@@ -51,6 +51,7 @@
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/sebastian/complexity" />
       <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/brainmaestro/composer-git-hooks" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
