@@ -28,5 +28,11 @@
         "psr-4": {
             "Seoladan\\GithubTemplate\\Tests\\": "tests/"
         }
-    }
-}
+    },
+    "scripts": {
+        "changelog": "vendor/bin/conventional-changelog",
+        "release": "vendor/bin/conventional-changelog --commit",
+        "release:patch": "vendor/bin/conventional-changelog --commit --patch",
+        "release:minor": "vendor/bin/conventional-changelog --commit --minor",
+        "release:major": "vendor/bin/conventional-changelog --commit --major",
+    },
