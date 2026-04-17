@@ -1,0 +1,32 @@
+{
+    "name": "seoladan/github-template",
+    "description": "description",
+    "version": "0.1.0",
+    "type": "library",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sean Ellingham",
+            "email": "sean@terrestris.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5.0",
+        "marcocesarato/php-conventional-changelog": "^1.17",
+        "symfony/console": "^7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Seoladan\\GithubTemplate\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Seoladan\\GithubTemplate\\Tests\\": "tests/"
+        }
+    }
+}
