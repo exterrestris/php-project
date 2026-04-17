@@ -9,7 +9,7 @@ FROM base AS install
 COPY --from=ghcr.io/mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
 
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git unzip
 
 
 FROM install AS dev
