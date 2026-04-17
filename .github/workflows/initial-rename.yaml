@@ -1,0 +1,54 @@
+name: Update template from new project name
+
+on: [push]
+
+jobs:
+  initial-rename:
+    if: ${{ github.repository != 'seoladan/github-template' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Update composer.json package name and autoload paths
+        run: .github/initial-rename.sh
+        env:
+          TEMPLATE: 'seoladan/github-template'
+          PROJECT: ${{ github.repository }}
+
+      - name: Reset composer.json version
+        uses: php-actions/composer@v6
+        with:
+          command: 'config'
+          args: 'version 0.1.0'
+
+      - name: Run composer update
+        uses: php-actions/composer@v6
+        with:
+          command: 'update'
+          args: '--no-install --lock'
+
+      - name: Remove 'initial-rename' workflow
+        run: |
+          rm -rf .github/workflows/initial-rename.yaml
+          rm -rf .github/initial-rename.sh
+
+      - name: Get last commit message
+        id: last-commit
+        run: |
+          echo "message=$(git log -1 --pretty=%s)" >> $GITHUB_OUTPUT
+          echo "author=$(git log -1 --pretty=\"%an <%ae>\")" >> $GITHUB_OUTPUT
+
+      - name: Force push new repo contents
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          file_pattern: 'composer.json .github/* .idea/*'
+          commit_author: ${{ steps.last-commit.outputs.author }}
+          commit_message: 'Initial structure'
+          commit_options: '--amend --no-edit'
+          push_options: '--force'
+          skip_fetch: true
