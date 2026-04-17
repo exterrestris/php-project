@@ -14,7 +14,7 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.head_ref }}
 
-      - name: Update composer.json package name and autoload paths
+      - name: Update repository references
         run: .github/initial-rename.sh
         env:
           TEMPLATE: 'seoladan/github-template'
@@ -46,7 +46,7 @@ jobs:
       - name: Force push new repo contents
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          file_pattern: 'composer.json .github/* .idea/*'
+          file_pattern: 'composer.json *.md .github/* .idea/*'
           commit_author: ${{ steps.last-commit.outputs.author }}
           commit_message: 'Initial structure'
           commit_options: '--amend --no-edit'

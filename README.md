@@ -1,1 +1,1 @@
-# php-project
+# seoladan/github-template
